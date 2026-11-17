@@ -55,7 +55,8 @@ def get_sign_type(sign):
 
 # TODO 3: If the sign is a speed sign, return its number as an int. Else return current_limit.
 def get_speed_limit(sign, current_limit):
-    if get_sign_type(sign) == "speed":
+    # A number outside 20-100 (e.g. "150") is not a legal sign, so it is ignored
+    if get_sign_type(sign) == "speed" and is_valid_sign(sign):
         return int(sign)
     return current_limit
 
@@ -126,7 +127,10 @@ def ask_for_number(question, low, high):
 # TODO 8: Insert sign at position. Return False if position is not from 0 to len(road_list).
 # Otherwise insert and return True.
 def insert_sign(road_list, sign, position):
-    if not isinstance(position, int) or position < 0 or position > len(road_list):
+    # bool is a subclass of int in Python, so True would sneak in as position 1
+    if not isinstance(position, int) or isinstance(position, bool):
+        return False
+    if position < 0 or position > len(road_list):
         return False
     if not is_valid_sign(sign):
         return False
@@ -137,7 +141,9 @@ def insert_sign(road_list, sign, position):
 # TODO 9: Replace the sign at index with a new sign. Return False if index is not
 # from 0 to len(road_list) - 1. Otherwise replace it and return True.
 def replace_sign(road_list, sign, index):
-    if not isinstance(index, int) or index < 0 or index > len(road_list) - 1:
+    if not isinstance(index, int) or isinstance(index, bool):
+        return False
+    if index < 0 or index > len(road_list) - 1:
         return False
     if not is_valid_sign(sign):
         return False
