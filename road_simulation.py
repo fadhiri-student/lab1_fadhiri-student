@@ -29,12 +29,26 @@ road = [
 # TODO 1: Return True only if sign is text AND is "bus", "zebra",
 # or a number from 20 to 100 written as text (e.g. "80"). Otherwise False.
 def is_valid_sign(sign):
-    pass
+    # Signs must be stored as text, even speed limits ("80", not 80)
+    if not isinstance(sign, str):
+        return False
+    if sign == "bus" or sign == "zebra":
+        return True
+    # isdecimal() rejects "-20", "8.5", "" and "²" so int() below is always safe
+    if sign.isdecimal():
+        return 20 <= int(sign) <= 100
+    return False
 
 
 # TODO 2: Return "bus", "zebra", "speed" (a number) or "road" (anything else).
 def get_sign_type(sign):
-    pass
+    if sign == "bus":
+        return "bus"
+    if sign == "zebra":
+        return "zebra"
+    if isinstance(sign, str) and sign.isdecimal():
+        return "speed"
+    return "road"
 
 
 # ==================== PART 2: TAKE ACTION ====================
