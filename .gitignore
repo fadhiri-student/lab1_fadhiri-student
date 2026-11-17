@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+# Generated on every run of road_simulation.py
+transit_session.log
