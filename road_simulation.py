@@ -164,7 +164,28 @@ def get_journey_summary(road_list):
     return signs_passed, length_m, START_NAME, END_NAME
 
 
+# Check the starting road before driving. "road" is allowed here (plain road),
+# every other item must pass is_valid_sign. Returns a list of (index, sign).
+def find_invalid_signs(road_list):
+    invalid = []
+    for i in range(len(road_list)):
+        sign = road_list[i]
+        if sign != "road" and not is_valid_sign(sign):
+            invalid.append((i, sign))
+    return invalid
+
+
 if __name__ == "__main__":
     import sys
+    if len(road) == 0:
+        print("Error: the road list is empty. Add at least one item, e.g. road = [\"60\", \"road\"].")
+        sys.exit(1)
+    bad_signs = find_invalid_signs(road)
+    if len(bad_signs) > 0:
+        print("Error: the road list in road_simulation.py contains invalid signs:")
+        for index, sign in bad_signs:
+            print(f"  segment {index}: {sign!r}")
+        print("Use 'road', 'bus', 'zebra' or a speed limit from 20 to 100 written as text, e.g. \"80\".")
+        sys.exit(1)
     import transit_program
     transit_program.run(sys.modules[__name__])
