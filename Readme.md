@@ -24,8 +24,8 @@ driving through Kigali at night, using only what the Python code decides.
 ## How to run
 
 ```bash
-git clone https://github.com/fndegeya/lab1_fndegeya.git
-cd lab1_fndegeya
+git clone https://github.com/fadhiri-student/lab1_fadhiri-student.git
+cd lab1_fadhiri-student
 python road_simulation.py      # or python3 road_simulation.py
 ```
 
