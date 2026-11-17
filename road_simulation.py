@@ -55,24 +55,47 @@ def get_sign_type(sign):
 
 # TODO 3: If the sign is a speed sign, return its number as an int. Else return current_limit.
 def get_speed_limit(sign, current_limit):
-    pass
+    if get_sign_type(sign) == "speed":
+        return int(sign)
+    return current_limit
 
 
 # TODO 4: Return 0 while stop_timer is above 0, otherwise return limit.
 def get_target_speed(limit, stop_timer):
-    pass
+    if stop_timer > 0:
+        return 0
+    return limit
 
 
 # TODO 5: Move speed ONE step towards target and return it.
 # Below target: add ACCELERATION (never go above target).
 # Above target: subtract BRAKING (never go below target).
 def adjust_speed(speed, target):
-    pass
+    if speed < target:
+        speed = speed + ACCELERATION
+        if speed > target:
+            speed = target
+    elif speed > target:
+        speed = speed - BRAKING
+        if speed < target:
+            speed = target
+    return speed
 
 
 # TODO 6: Use a loop. Return (speed_signs, zebras, buses).
 def count_signs(road_list):
-    pass
+    speed_signs = 0
+    zebras = 0
+    buses = 0
+    for sign in road_list:
+        sign_type = get_sign_type(sign)
+        if sign_type == "speed":
+            speed_signs = speed_signs + 1
+        elif sign_type == "zebra":
+            zebras = zebras + 1
+        elif sign_type == "bus":
+            buses = buses + 1
+    return speed_signs, zebras, buses
 
 
 # ==================== PART 3: SAFE INPUT AND JOURNEY SUMMARY ====================
