@@ -172,4 +172,4 @@ provided files behave as given. To use the brief's value, change
 
 ## Author
 
-Ndegeya Fadhili ([@fndegeya](https://github.com/fndegeya))
+Ndegeya Fadhiri ([@fadhiri-student](https://github.com/fadhiri-student))
